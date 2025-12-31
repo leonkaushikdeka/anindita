@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anindita | You Are Amazing! ✨</title>
+    <style>
+        /* --- CUTE RESET & VARIABLES --- */
+        :root {
+            --bg-color: #FFF0F5; /* Lavender Blush */
+            --card-bg: #FFFFFF;
+            --text-primary: #5D4037; /* Soft Brown instead of Black */
+            --text-secondary: #8D6E63;
+            --accent-pink: #F48FB1;
+            --accent-hot: #FF80AB;
+            --accent-blue: #B3E5FC;
+            --font-hand: 'Pacifico', cursive;
+            --font-body: 'Nunito', sans-serif;
+            --radius-large: 30px;
+            --radius-medium: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(#FFDEE3 2px, transparent 2px),
+                radial-gradient(#FFDEE3 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-family: var(--font-hand);
+            font-weight: 400;
+            color: var(--accent-hot);
+            line-height: 1.3;
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,240,245,0) 100%);
+            padding: 20px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px;
+            border-radius: var(--radius-large);
+            box-shadow: 0 10px 30px rgba(255, 128, 171, 0.2);
+            border: 4px dashed var(--accent-pink);
+            max-width: 800px;
+        }
+
+        .hero-pre-title {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin: 0 auto;
+        }
+
+        .scroll-bunny {
+            position: absolute;
+            bottom: 40px;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* --- IMAGE SECTION (Polaroid Style) --- */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            background: #fff;
+            padding: 15px 15px 60px 15px;
+            border-radius: var(--radius-medium);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            border-radius: var(--radius-medium);
+            display: block;
+        }
+
+        .polaroid-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            right: 20px;
+            font-family: var(--font-hand);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* --- VIDEO SECTION (Grid) --- */
+        .video-section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .video-section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .video-section-title span {
+            color: #fff;
+            background: var(--accent-hot);
+            padding: 5px 20px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-family: var(--font-body);
+        }
+
+        .cinematic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Simplified grid for cute look */
+            gap: 40px;
+        }
+
+        .video-card {
+            position: relative;
+            background: #fff;
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 25px rgba(244, 143, 177, 0.25);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: scale(1.05) rotate(1deg);
+            border-color: var(--accent-blue);
+        }
+
+        /* Video Element */
+        .video-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 250px;
+        }
+
+        /* Grid Spans */
+        .video-card:nth-child(1) { grid-column: span 2; } 
+        .video-card:nth-child(6) { grid-column: span 2; }
+
+        /* Overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            transition: background 0.3s;
+        }
+
+        .video-card:hover .video-overlay {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Heart Play Button */
+        .play-heart {
+            font-size: 3rem;
+            color: #fff;
+            background: var(--accent-hot);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255, 128, 171, 0.6);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover .play-heart {
+            transform: scale(1.2) rotate(-10deg);
+        }
+
+        .video-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .chapter-num {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .video-title {
+            font-family: var(--font-hand);
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+
+        /* --- STRENGTH CARDS --- */
+        .strength-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .strength-item {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: var(--radius-medium);
+            border: 2px dashed var(--accent-pink);
+            text-align: center;
+            position: relative;
+        }
+
+        .strength-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-hot);
+        }
+
+        .emoji-badge {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- QUOTE SECTION --- */
+        .quote-section {
+            background: var(--accent-blue);
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18a3 3 0 1 0-3-3v-2h5.5v-5h-8v6a8 8 0 0 0 8 8v-1.5z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .big-quote {
+            font-family: var(--font-hand);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+            text-shadow: 2px 2px rgba(0,0,0,0.1);
+        }
+
+        .quote-author {
+            margin-top: 30px;
+            font-family: var(--font-body);
+            color: #01579B;
+            font-weight: 700;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-hand);
+            font-size: 3rem;
+            color: var(--accent-hot);
+            margin-bottom: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .split-layout { grid-template-columns: 1fr; }
+            .cinematic-grid { grid-template-columns: 1fr; }
+            .video-card:nth-child(1), .video-card:nth-child(6) { grid-column: span 1; }
+            .hero-title { font-size: 3rem; }
+            .section-padding { padding: 60px 0; }
+        }
+    </style>
+    <!-- Cute Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="hero-content reveal">
+            <p class="hero-pre-title">Appreciation Post 💌</p>
+            <h1 class="hero-title">To Someone Who Shows Up</h1>
+            <p class="hero-subtitle">
+                Every single day, you chose to show up.<br>
+                Not just to the gym. To yourself! ✨
+            </p>
+        </div>
+        <div class="scroll-bunny">🐰</div>
+    </header>
+
+    <main>
+        <!-- Intro / Determination Section -->
+        <section class="section-padding container">
+            <div class="split-layout">
+                <!-- Image 7.jpeg (Polaroid) -->
+                <div class="image-wrapper reveal">
+                    <img src="7.jpeg" alt="Anindita at cafe">
+                    <div class="polaroid-caption">Beautiful & Strong! 💖</div>
+                </div>
+                <div class="content reveal">
+                    <h2 style="font-size: 2.8rem; margin-bottom: 25px;">365 Days of Magic ✨</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                        While others made excuses, you made progress. While others hit snooze, you hit your goals! 🎯
+                    </p>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                        You didn't just survive this year—you transformed through it. The evidence isn't just in the mirror, but in the amazing energy you bring to every room. 🌟
+                    </p>
+                    <a href="#cinematic-journey" style="background: var(--accent-hot); color: #fff; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(255, 128, 171, 0.4); display: inline-block; transition: transform 0.2s;">Watch the Journey 🎬</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUTE VIDEO SECTION -->
+        <section id="cinematic-journey" class="section-padding" style="background: #fff;">
+            <div class="container">
+                <div class="video-section-title reveal">
+                    <span>Scroll Down ⬇️</span>
+                    <h2>The Cinematic Journey 🎥</h2>
+                    <p style="font-size: 1.1rem; margin-top: 10px;">Six amazing chapters of you being you! 🌸</p>
+                </div>
+
+                <div class="cinematic-grid reveal">
+                    
+                    <!-- Video 1: 1.mp4 -->
+                    <div class="video-card">
+                        <video src="1.mp4" class="video-bg" loop muted autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <div class="play-heart">♥</div>
+                            <div class="video-info">
+                                <span class="chapter-num">Chapter I</span>
+                                <div class="video-title">The Decision</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 2: 2.mp4 -->
+                    <div class="video-card">
+                        <video src="2.mp4" class="video-bg" loop muted autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <div class="play-heart">♥</div>
+                            <div class="video-info">
+                                <span class="chapter-num">Chapter II</span>
+                                <div class="video-title">The Grind 💪</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 3: 3.mp4 -->
+                    <div class="video-card">
+                        <video src="3.mp4" class="video-bg" loop muted autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <div class="play-heart">♥</div>
+                            <div class="video-info">
+                                <span class="chapter-num">Chapter III</span>
+                                <div class="video-title">Silent Mornings 🌅</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 4: 4.mp4 -->
+                    <div class="video-card">
+                        <video src="4.mp4" class="video-bg" loop muted autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <div class="play-heart">♥</div>
+                            <div class="video-info">
+                                <span class="chapter-num">Chapter IV</span>
+                                <div class="video-title">Breaking Limits ⚡</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 5: 5.mp4 -->
+                    <div class="video-card">
+                        <video src="5.mp4" class="video-bg" loop muted autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <div class="play-heart">♥</div>
+                            <div class="video-info">
+                                <span class="chapter-num">Chapter V</span>
+                                <div class="video-title">Living Strong 🏆</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 6: 6.mp4 -->
+                    <div class="video-card">
+                        <video src="6.mp4" class="video-bg" loop muted autoplay playsinline></video>
+                        <div class="video-overlay">
+                            <div class="play-heart">♥</div>
+                            <div class="video-info">
+                                <span class="chapter-num">Chapter VI</span>
+                                <div class="video-title">The Future 🚀</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Strength Attributes -->
+        <section class="section-padding container">
+            <div class="reveal" style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">The Quiet Strength</h2>
+                <p style="color: var(--text-secondary);">You've proven that real strength isn't loud. 🌈</p>
+            </div>
+
+            <div class="strength-grid reveal">
+                <div class="strength-item">
+                    <span class="emoji-badge">✅</span>
+                    <h3>Consistent.</h3>
+                    <p>Showing up when no one's watching. Doing the work, rep after rep, day after day, regardless of how you feel!</p>
+                </div>
+                <div class="strength-item">
+                    <span class="emoji-badge">🤗</span>
+                    <h3>Kind.</h3>
+                    <p>Being kind even when it's easier not to be. Lifting others up while you are climbing your own mountain!</p>
+                </div>
+                <div class="strength-item">
+                    <span class="emoji-badge">🦁</span>
+                    <h3>Unstoppable.</h3>
+                    <p>You push through moments of doubt. You turn temporary pain into permanent power. You are a force of nature!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote / Note Section -->
+        <section class="quote-section reveal">
+            <div class="container">
+                <div class="big-quote">
+                    "The pain was temporary.<br>
+                    The strength you built?<br>
+                    <span style="font-size: 1.2em; color: #fff;">That's forever. 💎</span>"
+                </div>
+                <p class="quote-author">— About those kickbacks and the lessons learned</p>
+                
+                <!-- Image 9.jpeg (Portrait) -->
+                <div style="margin-top: 50px;">
+                    <img src="9.jpeg" alt="Portrait" style="max-width: 350px; width: 100%; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border: 5px solid #fff;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-logo">ANINDITA 🌸</div>
+                <p class="footer-text" style="color: var(--text-secondary); margin-bottom: 20px;">
+                    For every early morning. For every moment of doubt you pushed through.<br>
+                    Keep going. You're just getting started.
+                </p>
+                <div style="font-size: 1.5rem;">
+                    💖 ✨ 🌈 🐰
+                </div>
+                <p style="margin-top: 30px; font-size: 0.8rem; color: #aaa;">&copy; Anindita for Mrs. bs fitness</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Intersection Observer for Scroll Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Video Mute/Unmute Logic
+            document.querySelectorAll('.video-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const video = this.querySelector('video');
+                    const heart = this.querySelector('.play-heart');
+                    
+                    if (video.muted) {
+                        video.muted = false;
+                        heart.innerText = "💖"; // Filled heart
+                        // Pause others
+                        document.querySelectorAll('video').forEach(v => {
+                            if(v !== video) {
+                                v.muted = true;
+                                v.parentElement.querySelector('.play-heart').innerText = "♥";
+                            }
+                        });
+                    } else {
+                        video.muted = true;
+                        heart.innerText = "♥"; // Outline heart
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
